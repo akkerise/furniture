@@ -1,10 +1,10 @@
 'use strict'
-var services = require('../../services')
+var Services = require('../../services')
 
 
 const HomeController = {
     async index(req, res) {
-        console.log(services.Auth.login());
+        console.log(Services.Auth.login());
         return res.render('pages/index');
     }
 }

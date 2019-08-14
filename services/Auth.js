@@ -2,7 +2,6 @@ var models = require('../models');
 
 module.exports = {
     login() {
-        console.log('AuthService.login')
         return 1;
     },
 
