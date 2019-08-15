@@ -4,9 +4,11 @@ var Services = require('../../services');
 
 const RequestController = {
 
-    async create(req, res) {
-        console.log(req.body);
-        return await Services.Request.create(req.body);
+    async store(req, res) {
+        let {err, result} = await Services.Request.store(req.body);
+        console.log(err,result);
+        if(!err) res.json({message: 'success', result});
+        return res.json({message: 'failed', result});
     },
 
 };

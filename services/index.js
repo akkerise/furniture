@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);
-var normalizedPath = path.join(__dirname, '');
+const normalizedPath = path.join(__dirname, '');
 const Services = {};
 fs
     .readdirSync(normalizedPath)
@@ -10,7 +10,7 @@ fs
     })
     .forEach(function(file) {
         if (file.match(/\.js$/) !== null && file !== 'index.js') {
-            var name = file.replace('.js', '');
+            let name = file.replace('.js', '');
             exports[name] = require('./' + file);
         }
     });
