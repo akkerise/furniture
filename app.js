@@ -21,7 +21,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'myebaydeals', resave: false, saveUninitialized: false}));
+app.use(session({ secret: 'thanhna', resave: true, saveUninitialized: false}));
 app.use(flash());
 app.use(csrf());
 app.use(function(req,res,next){

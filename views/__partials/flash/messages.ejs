@@ -1,0 +1,9 @@
+<% if (messages){ %>
+    <div class="form-group alert-link">
+        <ul class="text-center">
+            <% messages.forEach(message => { %>
+                <li class="alert-<%= message.code %>"><%= message.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %>
