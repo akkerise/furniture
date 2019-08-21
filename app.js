@@ -9,6 +9,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var logger = require('morgan');
 var csrf = require('csurf');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -19,17 +20,33 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({ secret: 'thanhna', resave: true, saveUninitialized: false}));
 app.use(flash());
-app.use(csrf());
-app.use(function(req,res,next){
-  var token = req.csrfToken();
-  res.cookie('XSRF-TOKEN', token);
-  res.locals.csrfToken = token;
-  next();
-})
+
+// mount api before csrf is appended to the app stack
+app.use('/api', api);
+
+// app.use(csrf({ cookie: true }));
+// app.use(function(req,res,next){
+//   /**
+//    * handler error: form tampered
+//    */
+  
+//   /*
+//   if (err.code !== 'EBADCSRFTOKEN') return next(err)
+
+//   // handle CSRF token errors here
+//   res.status(403);
+//   res.send('form tampered with');
+//   */
+
+//   var token = req.csrfToken();
+//   res.cookie('XSRF-TOKEN', token);
+//   res.locals.csrfToken = token;
+//   next();
+// })
 app.use(express.static(path.join(__dirname, 'public')));
 
 const routes = require(__dirname + "/routes")
