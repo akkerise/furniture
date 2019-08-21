@@ -7,7 +7,7 @@ const AuthController = {
     },
 
     async postLogin(req, res) {
-
+        return res.json({err: 'some'});
     },
 
     async register(req, res) {

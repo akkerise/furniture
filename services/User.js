@@ -2,7 +2,7 @@ var models = require('../models');
 
 module.exports = {
     async login(params) {
-
+        return {err: null, params};
     },
 
     async register(params) {
