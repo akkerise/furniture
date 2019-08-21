@@ -1,14 +1,15 @@
 'use strict'
 
 var Services = require('../../services');
+var models = require('../../models')
 
 const RequestController = {
 
     async store(req, res) {
-        let {err, result} = await Services.Request.store(req.body);
-        console.log(err,result);
-        if(!err) res.json({message: 'success', result});
-        return res.json({message: 'failed', result});
+        let [request, created] = await Services.Request.store(req.body);
+        if(!created) return new Error(`Request is exist's`);
+        let result = request.get({plain: true});
+        return res.status(200).json({result});
     },
 
 };

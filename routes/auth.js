@@ -3,7 +3,7 @@ var router = express.Router();
 var AuthController = require('../app/controllers/AuthController');
 var auth = require('../app/middlewares/auth');
 
-/* GET users listing. */
+/* auth router listing. */
 router.get('/login', AuthController.login);
 router.post('/login', AuthController.postLogin);
 router.get('/register', AuthController.register);
