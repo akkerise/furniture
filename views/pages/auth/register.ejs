@@ -46,7 +46,7 @@
                                 <%- include('../../__partials/flash/messages', {messages}) %>
                                 <!--End Messages-->
 
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="hidden" name="_csrf" value="{{%= csrfToken %}}">
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input name="name" type="text" class="form-control" placeholder="Name">
