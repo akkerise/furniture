@@ -12,25 +12,25 @@ const RequestController = {
     },
 
     async create(req, res) {
-        let {err, request} = await Services.Request.create(req.body);
-        if(!err.status) return res.json({err});
-        return res.json({err, request});
+        //console.log(`URL: ${req.url}`);
+
+       
     },
 
     async read(req, res) {
-        let {err, request} = await Services.Request.read(req.body);
+        let {err, request} = await Services.Request.store(req.body);
         if(!err.status) return res.json({err});
         return res.json({err, request});
     },
 
     async update(req, res) {
-        let {err, request} = await Services.Request.update(req.body);
+        let {err, request} = await Services.Request.store(req.body);
         if(!err.status) return res.json({err});
         return res.json({err, request});
     },
 
     async delete(req, res) {
-        let {err, request} = await Services.Request.delete(req.body);
+        let {err, request} = await Services.Request.store(req.body);
         if(!err.status) return res.json({err});
         return res.json({err, request});
     },

@@ -28,27 +28,27 @@ app.use(flash());
 // mount api before csrf is appended to the app stack
 app.use('/api', api);
 
-// require form input send to server have an csrfToken
-app.use(csrf({cookie: true}));
-app.use(function (err, req, res, next) {
+// // require form input send to server have an csrfToken
+// app.use(csrf({cookie: true}));
+// app.use(function (err, req, res, next) {
 
-    /**
-     * handler error: form tampered
-     */
+//     /**
+//      * handler error: form tampered
+//      */
 
-    /*
-    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+//     /*
+//     if (err.code !== 'EBADCSRFTOKEN') return next(err)
 
-    // handle CSRF token errors here
-    res.status(403);
-    res.send('form tampered with');
-    */
+//     // handle CSRF token errors here
+//     res.status(403);
+//     res.send('form tampered with');
+//     */
 
-    var token = req.csrfToken();
-    res.cookie('XSRF-TOKEN', token);
-    res.locals.csrfToken = token;
-    next();
-})
+//     var token = req.csrfToken();
+//     res.cookie('XSRF-TOKEN', token);
+//     res.locals.csrfToken = token;
+//     next();
+// })
 
 app.use(express.static(path.join(__dirname, 'public')));
 
