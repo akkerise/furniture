@@ -6,9 +6,9 @@ var models = require('../../models')
 const RequestController = {
 
     async store(req, res) {
-        let {err, request} = await Services.Request.store(req.body);
+        let {err, data} = await Services.Request.store(req.body);
         if(!err.status) return res.json({err});
-        return res.json({err, request});
+        return res.json({err, data});
     },
 
 };

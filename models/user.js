@@ -22,15 +22,12 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         instanceMethods: {
-            validPassword: function (password) {
-                return bcrypt.compareSync(password, this.password);
-            }
+            // validPassword: function (password) {
+            //     return bcrypt.compareSync(password, this.password);
+            // }
         }
     });
 
-    // sequelize.sync()
-    //     .then(() => console.log('User successfully created'))
-    //     .catch(err => console.log('This error occured', err));
 
     user.associate = function (models) {
         // associations can be defined here

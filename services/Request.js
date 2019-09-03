@@ -1,7 +1,7 @@
-var models = require('../models');
+var models = require("../models");
+import SR from '../utilities/helper/service-response'; // ServiceResponse
 
 module.exports = {
-
     async store(params) {
         let {name, email, phone, content} = params;
         try {
@@ -9,15 +9,10 @@ module.exports = {
                 where: {name, email, phone},
                 defaults: {name, email, phone, content}
             });
-            if (!created) return {err: {status: created, message: `Request is exist's`}};
-            return {
-                err: {status: created, message: `Request create successfully!`},
-                request: request.get({plain: true})
-            };
+            if (!created) return SR.failed(`Request is exist's`);
+            else return SR.success(request.get({plain: true}),`Request create successfully!`);
         } catch (err) {
-            return {err: {status: false, message: `Something error!`}};
+            return SR.failed(err);
         }
-
-    },
-
-}
+    }
+};

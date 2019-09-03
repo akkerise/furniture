@@ -7,7 +7,14 @@ const AuthController = {
     },
 
     async postLogin(req, res) {
-        return res.json({err: 'some'});
+        console.log(req.body);
+        let {err, user} = await Services.Auth.login(req.body);
+        if(!err.status) {
+            req.flash('messages', {code: 'danger', msg: err.message});
+            return res.redirect('/auth/login');
+        }else{
+            return res.json(user);
+        }
     },
 
     async register(req, res) {
@@ -15,7 +22,7 @@ const AuthController = {
     },
 
     async postRegister(req, res) {
-        let {err, user} = await Services.User.register(req.body);
+        let {err, user} = await Services.Auth.register(req.body);
         if (err) {
             req.flash('messages', {code: 'danger', msg: 'Something wrong!'});
             return res.redirect('/auth/register');
