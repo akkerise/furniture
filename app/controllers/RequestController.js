@@ -1,7 +1,7 @@
 'use strict'
 
 var Services = require('../../services');
-var models = require('../../models')
+var models = require('../../models');
 
 const RequestController = {
 

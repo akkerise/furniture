@@ -1,5 +1,5 @@
-var models = require("../models");
-import SR from '../utilities/helper/service-response'; // ServiceResponse
+const models = require("../models");
+const SR = require('../utilities/helper/service-response');
 
 module.exports = {
     async store(params) {

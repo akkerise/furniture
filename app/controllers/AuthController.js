@@ -1,5 +1,6 @@
-'use strict'
-var Services = require('../../services')
+'use strict';
+const AuthService = require('../../services').Auth;
+const Flash = require('../../utilities/helper/flash');
 
 const AuthController = {
     async login(req, res) {
@@ -7,14 +8,12 @@ const AuthController = {
     },
 
     async postLogin(req, res) {
-        console.log(req.body);
-        let {err, user} = await Services.Auth.login(req.body);
-        if(!err.status) {
-            req.flash('messages', {code: 'danger', msg: err.message});
-            return res.redirect('/auth/login');
-        }else{
-            return res.json(user);
-        }
+        let {err, data} = await AuthService.login(req);
+        Flash.set(err);
+        req.flash('messages', Flash.message);
+        console.log(err,data);
+        if (!err.success) return res.redirect('/auth/login');
+        return res.redirect('/dash');
     },
 
     async register(req, res) {
@@ -22,19 +21,11 @@ const AuthController = {
     },
 
     async postRegister(req, res) {
-        let {err, user} = await Services.Auth.register(req.body);
-        if (err) {
-            req.flash('messages', {code: 'danger', msg: 'Something wrong!'});
-            return res.redirect('/auth/register');
-        }
-        if (!user) {
-            req.flash('messages', {code: 'danger', msg: 'Create user failed!'});
-            return res.redirect('/auth/register');
-        }
-        if (!err && user) {
-            req.flash('messages', {code: 'success', msg: 'Created user successfully!'});
-            return res.redirect('/auth/login');
-        }
+        let {err, user} = await AuthService.register(req.body);
+        Flash.set(err);
+        req.flash('messages', Flash.message);
+        if (err.success) return res.redirect('/auth/register');
+        if (user) return res.redirect('/auth/login');
     },
 
     async profile(req, res) {
