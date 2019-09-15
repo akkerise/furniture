@@ -1,6 +1,4 @@
-'use strict'
-var Services = require('../../services')
-
+'use strict';
 
 const HomeController = {
     async index(req, res) {

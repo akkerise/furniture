@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var AuthController = require('../app/controllers/AuthController');
-var auth = require('../app/middlewares/auth');
+const express = require('express');
+const router = express.Router();
+const auth = require('../app/middlewares/auth');
+const AuthController = require('../app/controllers/AuthController');
 
 /* auth router listing. */
 router.get('/login', AuthController.login);

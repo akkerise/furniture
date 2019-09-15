@@ -1,15 +1,21 @@
-export default {
-    state: {
-        message: null,
-        status: false,
+module.exports = {
+    messages: [],
+    message: {
+        text: null,
+        alert: null,
+        success: false,
     },
-    set(message, status){
-        this.state.message = message;
-        this.state.status = status;
-        setTimeout(() => {this.reset()},3000);
+    set({message, success}) {
+        this.message.text = message;
+        this.message.alert = success ? 'success' : 'danger';
+        this.message.success = success;
+        this.messages.push(this.message);
+        setTimeout(() => this.reset(), 2500);
     },
-    reset(){
-        this.state.message = null;
-        this.state.status = false;
+    reset() {
+        this.message.text = null;
+        this.message.alert = null;
+        this.message.success = false;
+        this.messages = [];
     }
 }

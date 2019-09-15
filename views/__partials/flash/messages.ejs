@@ -2,7 +2,9 @@
     <div class="form-group alert-link">
         <ul class="text-center">
             <% messages.forEach(message => { %>
-                <li class="alert-<%= message.code %>"><%= message.msg %></li>
+                <% if (message.text){ %>
+                    <li class="alert-<%= message.alert %>"><%= message.text %></li>
+                <% } %>
             <% }) %>
         </ul>
     </div>
