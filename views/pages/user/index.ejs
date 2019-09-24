@@ -1,0 +1,50 @@
+<% layout('../../layouts/main') %>
+<style>
+    .mdi {cursor: pointer;}
+</style>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Users</h4>
+        <h6 class="card-subtitle"></h6>
+        <div class="table-responsive m-t-40">
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Expired At</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(user => { %>
+                        <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.phone %></td>
+                            <td><%= user.expiredAt %></td>
+                            <td><%= user.createdAt %></td>
+                            <td>
+                            
+                                <i onclick="user.del(<%= user.id %>)" class="mdi mdi-delete font-18 align-middle mr-2"></i>
+                                
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% script('/templates/elaadmin/js/custom.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/datatables.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js') %>
+<% script('/templates/elaadmin/js/lib/datatables/datatables-init.js') %>

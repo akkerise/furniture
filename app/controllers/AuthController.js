@@ -11,7 +11,6 @@ const AuthController = {
         let {err, data} = await AuthService.login(req);
         Flash.set(err);
         req.flash('messages', Flash.message);
-        console.log(err,data);
         if (!err.success) return res.redirect('/auth/login');
         return res.redirect('/dash');
     },
@@ -36,9 +35,13 @@ const AuthController = {
         if (req.session) {
             req.session.destroy(function (err) {
                 if (err) return next(err);
-                else return res.redirect('/');
+                else {
+                    // Flash.set({message: `Logout user successfully!`, success: true});
+                    // req.flash('message', Flash.message);
+                    return res.redirect('/auth/login');
+                }
             });
-        }
+        } else return res.redirect('/');
     }
 };
 

@@ -5,8 +5,7 @@ const DashboardController = {
 
     async index(req, res) {
         return res.render('pages/dashboard/index');
-    }
-
+    },
 };
 
 module.exports = DashboardController;

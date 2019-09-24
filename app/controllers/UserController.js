@@ -1,24 +1,31 @@
-'use strict'
-
-// var UserService = require('../../services/UserService');
-// import UserService from '../services/UserService';
-var Services = require('../../services');
+'use strict';
+const Services = require('../../services');
+const SR = require('../../utilities/helper/service-response');
 
 const UserController = {
 
     async index(req, res) {
-        // if (req.params.id) {
-        //     let user = await Services.User.find(req.params.id);
-        //     if (user) return res.json({ user: user });
-        //     return res.json({ message: `User not exist's` });
-        // } else res.json({ message: 'User id not found' });
+        let staticClient = '';
+        let {data, err} = await Services.User.all();
+        return res.render('pages/user/index', {data, staticClient});
     },
 
     async search(req, res) {
-        // let [attribute, value] = [req.params.attribute, req.params.value];
-        // let user = await UserService.findWhere({ attribute, value });
-        // return res.json({ user });
+
     },
+
+    async add(req, res){
+        let user = req.body;
+        
+    },
+    
+    async del(req, res) {
+        // if(!req.params || !req.params.id) {
+        // }
+        let {data, err} = await Services.User.del(req.params.id);
+        if(!err.success) return res.json({err});
+        else return res.json({err, data});
+    }
 
 };
 

@@ -12,13 +12,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <title>Ela - Bootstrap Admin Dashboard Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/templates/elaadmin/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
 
-    <link href="/templates/elaadmin/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
-    <link href="/templates/elaadmin/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
-    <link href="/templates/elaadmin/css/lib/owl.carousel.min.css" rel="stylesheet"/>
-    <link href="/templates/elaadmin/css/lib/owl.theme.default.min.css" rel="stylesheet"/>
+    <link href="/templates/elaadmin/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <%- stylesheets %>
+    <!-- Custom CSS -->
+    
     <link href="/templates/elaadmin/css/helper.css" rel="stylesheet">
     <link href="/templates/elaadmin/css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,6 +26,7 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -46,7 +46,6 @@
     <!-- Left Sidebar  -->
     <% include ../__partials/block/left-sidebar.ejs %>
     <!-- End Left Sidebar  -->
-
     <!-- Page wrapper  -->
     <div class="page-wrapper">
         <!-- Bread crumb -->
@@ -66,11 +65,17 @@
             <!-- Start Page Content -->
             <%- body %>
             <!-- End PAge Content -->
+
+            <div class="loading" style="display: none; width: 100%; position: absolute; top:30%; left: 50%;">
+                <img src="/images/loading.gif" alt="Loading">
+            </div>
+
         </div>
         <!-- End Container fluid  -->
         <!-- footer -->
         <% include ../__partials/block/footer.ejs %>
         <!-- End footer -->
+        <% include ../__partials/block/modal.ejs %>
     </div>
     <!-- End Page wrapper  -->
 </div>
@@ -88,25 +93,20 @@
 <script src="/templates/elaadmin/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 <!--Custom JavaScript -->
 
-<!-- Amchart -->
-<script src="/templates/elaadmin/js/lib/morris-chart/raphael-min.js"></script>
-<script src="/templates/elaadmin/js/lib/morris-chart/morris.js"></script>
-<script src="/templates/elaadmin/js/lib/morris-chart/dashboard1-init.js"></script>
-<script src="/templates/elaadmin/js/lib/calendar-2/moment.latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+<%- scripts %>
+
+<link href="/node_modules/toastr/toastr.js" rel="stylesheet"/>
+
 <!-- scripit init-->
-<script src="/templates/elaadmin/js/lib/calendar-2/semantic.ui.min.js"></script>
-<!-- scripit init-->
-<script src="/templates/elaadmin/js/lib/calendar-2/prism.min.js"></script>
-<!-- scripit init-->
-<script src="/templates/elaadmin/js/lib/calendar-2/pignose.calendar.min.js"></script>
-<!-- scripit init-->
-<script src="/templates/elaadmin/js/lib/calendar-2/pignose.init.js"></script>
-<script src="/templates/elaadmin/js/lib/owl-carousel/owl.carousel.min.js"></script>
-<script src="/templates/elaadmin/js/lib/owl-carousel/owl.carousel-init.js"></script>
-<script src="/templates/elaadmin/js/scripts.js"></script>
-<!-- scripit init-->
-<script src="/templates/elaadmin/js/custom.min.js"></script>
+<script src="/js/ajax.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/user.js"></script>
 <script type="text/javascript">
+    const baseUrl = window.location.origin;
 </script>
 </body>
 
