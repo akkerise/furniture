@@ -4,7 +4,8 @@ const Flash = require('../../utilities/helper/flash');
 
 const AuthController = {
     async login(req, res) {
-        return res.render('pages/auth/login', {messages: req.flash('messages')});
+        if (req.session && req.session.user) return res.redirect('/dash', {messages: req.flash('messages')});
+        else return res.render('pages/auth/login', {messages: req.flash('messages')});
     },
 
     async postLogin(req, res) {

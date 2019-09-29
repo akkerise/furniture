@@ -1,12 +1,11 @@
 'use strict';
-const Services = require('../../services');
-const SR = require('../../utilities/helper/service-response');
+const UserService = require('../../services').User;
 
 const UserController = {
 
     async index(req, res) {
-        let staticClient = '';
-        let {data, err} = await Services.User.all();
+        let staticClient = ``;
+        let {data} = await UserService.all();
         return res.render('pages/user/index', {data, staticClient});
     },
 
@@ -14,16 +13,26 @@ const UserController = {
 
     },
 
-    async add(req, res){
+    async add(req, res) {
         let user = req.body;
-        
+        res.json({user});
     },
-    
+
+    async show(req, res) {
+        const {data, err} = await UserService.find(req.params.id);
+        if (!err.success) return res.json({err});
+        return res.json({err, data})
+    },
+
+    async update(req, res) {
+        const {data, err} = await UserService.findUpdate(req);
+        if (!err.success) return res.json({err});
+        return res.json({err, data});
+    },
+
     async del(req, res) {
-        // if(!req.params || !req.params.id) {
-        // }
-        let {data, err} = await Services.User.del(req.params.id);
-        if(!err.success) return res.json({err});
+        let {err, data} = await UserService.del(req);
+        if (!err.success) return res.json({err});
         else return res.json({err, data});
     }
 

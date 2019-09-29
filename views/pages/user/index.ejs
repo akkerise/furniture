@@ -27,9 +27,9 @@
                             <td><%= user.expiredAt %></td>
                             <td><%= user.createdAt %></td>
                             <td>
-                            
-                                <i onclick="user.del(<%= user.id %>)" class="mdi mdi-delete font-18 align-middle mr-2"></i>
-                                
+                                <i onclick="user.edit(<%= user.id %>)" class="mdi mdi-account-edit"></i>
+                                <i onclick="user.del(<%= user.id %>)" class="mdi mdi-delete"></i>
+                                <i onclick="user.show(<%= user.id %>)" class="mdi mdi-account"></i>
                             </td>
                         </tr>
                     <% }); %>
