@@ -1,0 +1,22 @@
+<form id="user-edit-form">
+    <div class="form-validation">
+        <div class="form-group notify-wrap text-center text-danger" id="errors" style="display: none">
+        </div>
+        <div class="form-group" style="display: none;">
+            <label class="control-label">Id</label>
+            <input type="text" name="id" value="<%= data.id %>" class="form-control form-white">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Tên</label>
+            <input type="text" name="name" value="<%= data.name %>" class="form-control form-white">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Email</label>
+            <input type="email" name="email" value="<%= data.email %>" class="form-control form-white">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Phone</label>
+            <input type="tel" name="phone" value="<%= data.phone %>" class="form-control form-white">
+        </div>
+    </div>
+</form>
