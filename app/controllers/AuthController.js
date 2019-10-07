@@ -9,7 +9,7 @@ const AuthController = {
     },
 
     async postLogin(req, res) {
-        let {err, data} = await AuthService.login(req);
+        let {err} = await AuthService.login(req);
         Flash.set(err);
         req.flash('messages', Flash.message);
         if (!err.success) return res.redirect('/auth/login');

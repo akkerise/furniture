@@ -40,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     user.associate = models => {
-        console.log(models);
     };
 
     return user;

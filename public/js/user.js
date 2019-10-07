@@ -5,7 +5,7 @@ user.del = id => {
     else {
         popup.confirm(`Are you sure delete this user?`, () => {
             ajax({
-                service: `/user/service/add`,
+                service: `/user/service/del/${id}`,
                 method: "POST",
                 loading: true,
                 done: res => {
@@ -38,8 +38,8 @@ user.edit = id => {
                         title: 'Cập nhật',
                         style: 'btn-primary',
                         fn: function () {
-                            let email = $("input[name=email]").val();
-                            if (isEmail(email)) {
+                            let formData = $(`#user-edit-form`).serializeArray();
+                            if(BaseValidator.validate(formData)){
                                 ajaxSubmit({
                                     id: 'user-edit-form',
                                     service: '/user/service/update',
@@ -52,11 +52,8 @@ user.edit = id => {
                                     },
                                     error: err => err && err.message ? popup.msg(err.message) : popup.msg(err.toString())
                                 });
-                            } else {
-                                $(`input[name=email]`).addClass(`border border-danger`);
-                                $("#errors").html("Vui lòng nhập email đúng định dạng.");
-                                $("#errors").css("display", "block");
                             }
+
                         }
                     },
                     {

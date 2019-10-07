@@ -33,9 +33,13 @@
                 if ($(this).is(':checked')) data[$(this).attr('name')] = true;
                 else data[$(this).attr('name')] = false;
             } else if ($(this).attr('type') === 'radio') {
-                if ($(this).is(':checked')) data[$(this).attr('name')] = $(this).val();
+                if ($(this).is(':checked')) {
+                    data[$(this).attr('name')] = $(this).val();
+                }
             } else {
-                if ($(this).val() !== '' && typeof $(this).attr('name') != 'undefined') data[$(this).attr('name')] = $(this).val();
+                if ($(this).val() !== '' && typeof $(this).attr('name') != 'undefined') {
+                    data[$(this).attr('name')] = $(this).val();
+                }
             }
         });
         let paras = $.extend({
